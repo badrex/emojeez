@@ -59,7 +59,7 @@ def return_flag(country_code):
     base = 0x1F1E6
     flag = chr(base + ord(country_code[0]) - ord('A')) + chr(base + ord(country_code[1]) - ord('A'))
     
-    print(flag)
+    return flag
 
 def get_country_flags():
     flags = []
@@ -76,13 +76,13 @@ def get_country_flags():
             
 
             #if flag_name == "Flag of us":
-            print(flag_char, flag_emoji, flag_name)
+            #print(flag_char, flag_emoji, flag_name)
 
             flags.append(
                 {
                     'code': ord(flag_char[0]) * 0x10000 + ord(flag_char[1]), 
                     'char': flag_emoji, 
-                    'name': 'This is an emoji that represents a ' + flag_name.lower() + '.'
+                    'name':  flag_name.lower() # + '.' 'This is an emoji that represents a ' +
                 }
             )
 
@@ -117,7 +117,7 @@ def get_standard_emojis():
                     {
                         'code': ord(char),
                         'char': char,
-                        'name': 'This is an emoji that represents a ' + name.lower() + '.'
+                        'name': name.lower() #'This is an emoji that represents a ' + .lower() + '.'
                     }
                 )
             except ValueError:
@@ -130,7 +130,7 @@ emojis = get_standard_emojis() + get_country_flags()
 #print(emojis)
 
 # Print the first few for demonstration
-print(emojis[-10:])  # Print only the first 10 for brevity
+#print(emojis[-10:])  # Print only the first 10 for brevity
 
 # %%
 from fastembed import TextEmbedding
@@ -147,7 +147,7 @@ supported_models
 	
 
 # %%
-supported_models.loc[9]['model']
+#supported_models.loc[9]['model']
 
 # %%
 # documents: List[str] = [
@@ -184,6 +184,15 @@ client.recreate_collection(
     ),
 )
 
+client.upload_points(
+    collection_name="my_books",
+    points=[
+        models.PointStruct(
+            id=idx, vector=encoder.encode(emoji["name"]).tolist(), payload=emoji
+        )
+        for idx, emoji in tqdm(enumerate(emojis), total=len(emojis), ncols=100)
+    ],
+)
 
 # %%
 
@@ -191,8 +200,8 @@ client.recreate_collection(
 
 while True:
     query = str(input('Enter search query: '))
-    query = 'This is an emoji that represents a ' + query.lower() + '.'
-    str_len = len('This is an emoji that represents a ')
+    #query = 'This is an emoji that represents a ' + query.lower() + '.'
+    #str_len = len('This is an emoji that represents a ')
 
     if query:
         hits = client.search(
@@ -202,7 +211,7 @@ while True:
         )
 
         for hit in hits:
-            print(f"{hit.payload['char']:<10} {hex(hit.payload['code'])} {hit.payload['name'][str_len:-1]:>50} {hit.score:>5.2f}") #, "score:", hit.score) [str_len:-1][str_len:]
+            print(f"{hit.payload['char']:<10} {hex(hit.payload['code'])} {hit.payload['name']:>50} {hit.score:>5.2f}") #, "score:", hit.score) [str_len:-1][str_len:][str_len:-1]
     else:
         break
 
