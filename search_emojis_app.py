@@ -78,38 +78,31 @@ def return_similar_emojis(query: str):
 
 def main():
     load_resources()
-    st.title("Emojivan 🪔")
-    #st.text("AI-powereed semantic search for emojis 🫣 ")
+    st.title("EmoGist 🌱")
+    st.text("AI-powered semantic search for emojis with multilingual support 🌐 ") # globe emojies 🌍 
     #query = st.text_input("Enter your search query", "")
 
 
     # Using columns to layout the input and button next to each other
-    with st.form(key="search_form", border=False):
+    with st.form(key="search_form", border=True, ):
 
-        col1, col2 = st.columns([3, 1])
+        instr = "Enter your search query here"
+
+
+        col1, col2 = st.columns([2, 1])
         with col1:
             query = st.text_input(
-                label="Enter your search query", 
-                key="query", 
-                label_visibility='hidden', 
-                help="exploration discovery"
+                "",
+                value="",
+                placeholder=instr,
+                label_visibility='collapsed',
+                #label_visibility='visible', 
+                help="exploration discovery", 
+
             ) #Enter your search query
 
         with col2:
-            trigger_search = st.form_submit_button(label="Go! 🚀")
-
-        st.markdown(
-        """
-        <style>
-        button {
-            height: auto;cell
-            margin-top:49px !important;
-
-        }
-        </style>
-        """,
-            unsafe_allow_html=True,
-        )
+            trigger_search = st.form_submit_button(label="Search 🔮", use_container_width=True)
 
 
         if trigger_search:
@@ -120,7 +113,7 @@ def main():
                 if results:
                     # Display results as HTML
                     st.markdown(
-                        '<h1>' + '  '.join(results) + '</h1>', 
+                        '<h1>' + '\t'.join(results) + '</h1>', 
                         unsafe_allow_html=True
                     )
                 else:
