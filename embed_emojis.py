@@ -6,8 +6,7 @@ from tqdm import tqdm
 from typing import List, Dict, Any, Tuple
 from sentence_transformers import SentenceTransformer
 
-# for debugging
-#from icecream import ic
+
 
 # read emoji dictionary from desk
 with open('emoji_llm.pkl', 'rb') as file:
@@ -20,17 +19,21 @@ sentence_encoder = SentenceTransformer(embedging_model)
 # make a full sentence description for each emoji
 for emoji in tqdm(emoji_dict):
     try:
-        emoji_dict[emoji]['LLM_description'] = emoji_dict[emoji]["Description"] + \
+        description = emoji_dict[emoji]['Description']
+        semantic_tags = emoji_dict[emoji]['Semantic_Tags']
+
+        emoji_dict[emoji]['LLM_description'] = description + \
             ' This emoji is usually used in the contexts of: ' + \
-            ', '.join(str(s) for s in emoji_dict[emoji]["Semantic_Tags"][:-1]) + \
+            ', '.join(str(s) for s in semantic_tags[:-1]) + \
             ', and ' + \
-            str(emoji_dict[emoji]["Semantic_Tags"][-1]) + '.'
+            str(semantic_tags[-1]) + '.'
         
+    # exception handling was added to avoid errors when reading dicts
+    # TODO: add more specific exception handling    
     except Exception as e: 
-        print(e)
+        print(f"Error occurred for emoji: {emoji}. Error message: {str(e)}")
         
 
-#print(emoji_dict['🧬'])
 
 # generate sentence embedding for each emoji 
 vector_dict:Dict[str, np.array] = {}
@@ -40,7 +43,6 @@ for emoji in tqdm(emoji_dict):
         emoji_dict[emoji]['LLM_description']
     )
 
-#print(vector_dict['🧬'])
 
 emoji_embeddings_dict: Dict[str, Dict[str, str]] = {
     emoji: {
@@ -50,8 +52,7 @@ emoji_embeddings_dict: Dict[str, Dict[str, str]] = {
     for emoji in emoji_dict
 }
 
-#print(emoji_embeddings_dict['🧬'])
-
+# save the embeddings to desk
 with open('emoji_embeddings_dict.pkl', 'wb') as file:
     pickle.dump(emoji_embeddings_dict, file)
 

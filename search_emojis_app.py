@@ -78,8 +78,9 @@ def return_similar_emojis(query: str):
 
 def main():
     load_resources()
+
     st.title("EmoGist 🌱")
-    st.text("AI-powered semantic search for emojis with multilingual support 🌐 ") # globe emojies 🌍 
+    st.text("AI-powered semantic search for emojis with multilingual support 🌐 ") 
     #query = st.text_input("Enter your search query", "")
 
 
@@ -89,7 +90,7 @@ def main():
         instr = "Enter your search query here"
 
 
-        col1, col2 = st.columns([2, 1])
+        col1, col2 = st.columns([3, 1])
         with col1:
             query = st.text_input(
                 "",
@@ -97,7 +98,7 @@ def main():
                 placeholder=instr,
                 label_visibility='collapsed',
                 #label_visibility='visible', 
-                help="exploration discovery", 
+                #help="exploration discovery", 
 
             ) #Enter your search query
 
@@ -123,34 +124,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# def main():
-#     load_resources()
-#     st.title("Emojivan 🪔")
-
-#     # Function to handle search and update results
-#     def handle_search():
-#         if query:
-#             results = return_similar_emojis(query)
-#             results_container.empty()  # Clear the results container before displaying new results
-#             with results_container.container():
-#                 if results:
-#                     # Display results as HTML
-#                     st.markdown('<h1>' + ' '.join(results) + '</h1>', unsafe_allow_html=True)
-#                 else:
-#                     st.error("No results found.")
-#         else:
-#             results_container.empty()
-#             st.error("Please enter a query to search.")
-
-#     # Text input for query with action on hitting Enter
-#     query = st.text_input("Enter your search query", key="query") #, on_change=handle_search)
-
-#     # Create a container for results
-#     results_container = st.empty()
-
-# if __name__ == "__main__":
-#     main()
-
 

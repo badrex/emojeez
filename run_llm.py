@@ -152,8 +152,9 @@ mark_str = '<|im_end|>\n<|im_start|>assistant\n'
 
 mark_str_len = len(mark_str)
 
+
 terminators = [
-    pipeline.tokenizer.eos_top
+    pipeline.tokenizer.eos_top,
     pipeline.tokenizer.convert_tokens_to_ids("<|eot_id|>")
 ]
 
