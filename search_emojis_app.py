@@ -79,7 +79,7 @@ def return_similar_emojis(query: str):
 def main():
     load_resources()
 
-    st.title("EmoGist 🌱")
+    st.title("Emojeez 🧿")
     st.text("AI-powered semantic search for emojis with multilingual support 🌐 ") 
     #query = st.text_input("Enter your search query", "")
 
@@ -90,10 +90,10 @@ def main():
         instr = "Enter your search query here"
 
 
-        col1, col2 = st.columns([3, 1])
+        col1, col2 = st.columns([3.5, 1])
         with col1:
             query = st.text_input(
-                "",
+                instr, #"Enter text query here...",
                 value="",
                 placeholder=instr,
                 label_visibility='collapsed',
@@ -103,7 +103,7 @@ def main():
             ) #Enter your search query
 
         with col2:
-            trigger_search = st.form_submit_button(label="Search 🔮", use_container_width=True)
+            trigger_search = st.form_submit_button(label="Search ✨", use_container_width=True)
 
 
         if trigger_search:
