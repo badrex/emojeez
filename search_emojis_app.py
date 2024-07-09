@@ -9,7 +9,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Define a function to load resources and check session state
-@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+st.cache_resource
 def load_resources():
     if ('vector_DB_client' not in st.session_state 
             or 'sentence_encoder' not in st.session_state):
