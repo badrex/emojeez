@@ -15,7 +15,7 @@ def load_encoder(model_name: str) -> SentenceTransformer:
     """Load a sentence encoder model from Hugging Face Hub."""
 
     sentence_encoder = SentenceTransformer(model_name)
-    return sentence_encoder
+    st.session_state.sentence_encoder = sentence_encoder
 
 # A function to load the Qdrant vector DB client
 @st.cache_resource
@@ -59,7 +59,7 @@ def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
         ],
     )
 
-    return vector_DB_client   
+    st.session_state.vector_DB_client = vector_DB_client   
 
 
 # def load_resources():
@@ -112,18 +112,15 @@ def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
 #         st.session_state.vector_DB_client = vector_DB_client
 
 #@st.cache_resource
-def return_similar_emojis(
-    embedding_model: SentenceTransformer,
-    DB_index: QdrantClient,
-    query: str) -> List[str]:
+def return_similar_emojis(query: str) -> List[str]:
     """
     Return similar emojis to the query using the sentence encoder and Qdrant. 
     """
 
     # Embed the query
-    query_vector = embedding_model.encode(query).tolist()
+    query_vector = st.session_state.sentence_encoder.encode(query).tolist()
 
-    hits = DB_index.search(
+    hits = st.session_state.vector_DB_client.search(
         collection_name="EMOJIS",
         query_vector=query_vector,
         limit=400,
@@ -141,20 +138,27 @@ def return_similar_emojis(
 def main():
 
     # Load the sentence encoder model
-    model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
-    sentence_encoder = load_encoder(model_name)
+    if 'sentence_encoder' not in st.session_state:
+        model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
+        load_encoder(model_name)
+
 
     # Load the Qdrant client
-    embedding_dict_path = 'emoji_embeddings_dict.pkl'
+    if 'vector_DB_client' not in st.session_state:
+        embedding_dict_path = 'emoji_embeddings_dict.pkl'
 
-    with open(embedding_dict_path, 'rb') as file:
-        embedding_dict = pickle.load(file)
+        with open(embedding_dict_path, 'rb') as file:
+            embedding_dict = pickle.load(file)
 
-    vector_DB_client = load_qdrant_client(embedding_dict)
+        load_qdrant_client(embedding_dict)
     
 
     st.title("Emojeez 🧿")
-    st.text("AI-powered semantic search for emojis with multilingual support 🌐 ") 
+
+    app_description = """
+        AI-powered semantic search for emojis with multilingual support 🌐 
+    """
+    st.text(app_description) 
     #query = st.text_input("Enter your search query", "")
 
 
@@ -178,16 +182,15 @@ def main():
             ) #Enter your search query
 
         with col2:
-            trigger_search = st.form_submit_button(label="Search ✨", use_container_width=True)
+            trigger_search = st.form_submit_button(
+                label="Search ✨", 
+                use_container_width=True
+            )
 
 
         if trigger_search:
             if query:
-                results = return_similar_emojis(
-                    sentence_encoder,
-                    vector_DB_client, 
-                    query
-                )
+                results = return_similar_emojis(query)
 
                 if results:
                     
