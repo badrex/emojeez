@@ -112,11 +112,16 @@ def main():
             if query:
                 results = return_similar_emojis(query)
                 if results:
+                    
                     # Display results as HTML
                     st.markdown(
-                        '<h1>' + '\t'.join(results) + '</h1>', 
+                        '<h1>' + '\n'.join(results) + '</h1>', 
                         unsafe_allow_html=True
                     )
+                    # for emoji in results:
+                    #     short_name = ' '.join(em.demojize(emoji).split('_'))[1:-1]
+                    #     st.markdown('<h2>' + emoji +  '<pre>' + short_name  + '</pre>' + '</h2>' , 
+                    #         unsafe_allow_html=True)
                 else:
                     st.error("No results found.")
             else:
