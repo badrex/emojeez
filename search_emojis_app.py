@@ -10,7 +10,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # A function to load the sentence encoder model
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def load_encoder(model_name: str) -> SentenceTransformer:
     """Load a sentence encoder model from Hugging Face Hub."""
 
@@ -19,7 +19,7 @@ def load_encoder(model_name: str) -> SentenceTransformer:
     return sentence_encoder
 
 # A function to load the Qdrant vector DB client
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
     """
     Load a Qdrant client and populate the database with embeddings.
