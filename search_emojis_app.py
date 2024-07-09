@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pickle
+from typing import Dict, List, Any
 from sentence_transformers import SentenceTransformer
 from qdrant_client import models, QdrantClient
 import emoji as em
@@ -8,61 +9,121 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-# Define a function to load resources and check session state
-st.cache_resource
-def load_resources():
-    if ('vector_DB_client' not in st.session_state 
-            or 'sentence_encoder' not in st.session_state):
+# A function to load the sentence encoder model
+@st.cache_resource
+def load_encoder(model_name: str) -> SentenceTransformer:
+    """Load a sentence encoder model from Hugging Face Hub."""
+
+    sentence_encoder = SentenceTransformer(model_name)
+    return sentence_encoder
+
+# A function to load the Qdrant vector DB client
+@st.cache_resource
+def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
+    """
+    Load a Qdrant client and populate the database with embeddings.
+    """
+    # Setup the Qdrant client and populate the database
+    vector_DB_client = QdrantClient(":memory:")
+    embedding_dict = {
+        emoji: np.array(metadata['embedding']) 
+        for emoji, metadata in emoji_dict.items()
+    }
+
+    # Remove the embeddings from the dictionary so it can be used 
+    # as payload in Qdrant
+    for emoji in list(emoji_dict):
+        del emoji_dict[emoji]['embedding']
+
+    embedding_dim = next(iter(embedding_dict.values())).shape[0]
+
+    # Create collection in Qdrant
+    vector_DB_client.create_collection(
+        collection_name="EMOJIS",
+        vectors_config=models.VectorParams(
+            size=embedding_dim, 
+            distance=models.Distance.COSINE
+        ),
+    )
+
+    # Upload points to the collection
+    vector_DB_client.upload_points( 
+        collection_name="EMOJIS",
+        points=[
+            models.PointStruct(
+                id=idx, 
+                vector=embedding_dict[emoji].tolist(),
+                payload=emoji_dict[emoji]
+            )
+            for idx, emoji in enumerate(emoji_dict)
+        ],
+    )
+
+    return vector_DB_client   
+
+
+# def load_resources():
+#     if ('vector_DB_client' not in st.session_state 
+#             or 'sentence_encoder' not in st.session_state):
         
-        # Load emoji dictionary
-        with open('emoji_embeddings_dict.pkl', 'rb') as file:
-            emoji_dict = pickle.load(file)
+#         # Load emoji dictionary
+#         with open('emoji_embeddings_dict.pkl', 'rb') as file:
+#             emoji_dict = pickle.load(file)
 
-        # Load sentence encoder
-        embedding_model = 'paraphrase-multilingual-MiniLM-L12-v2'
-        sentence_encoder = SentenceTransformer(embedding_model)
-        st.session_state.sentence_encoder = sentence_encoder
+#         # Load sentence encoder
+#         embedding_model = 'paraphrase-multilingual-MiniLM-L12-v2'
+#         sentence_encoder = SentenceTransformer(embedding_model)
+#         st.session_state.sentence_encoder = sentence_encoder
 
-        # Setup the Qdrant client and populate the database
-        vector_DB_client = QdrantClient(":memory:")
-        embedding_dict = {
-            emoji: np.array(data['embedding']) 
-            for emoji, data in emoji_dict.items()
-        }
+#         # Setup the Qdrant client and populate the database
+#         vector_DB_client = QdrantClient(":memory:")
+#         embedding_dict = {
+#             emoji: np.array(data['embedding']) 
+#             for emoji, data in emoji_dict.items()
+#         }
 
-        for emoji in list(emoji_dict):
-            del emoji_dict[emoji]['embedding']
+#         for emoji in list(emoji_dict):
+#             del emoji_dict[emoji]['embedding']
 
-        embedding_dim = next(iter(embedding_dict.values())).shape[0]
+#         embedding_dim = next(iter(embedding_dict.values())).shape[0]
 
-        # Create collection in Qdrant
-        vector_DB_client.create_collection(
-            collection_name="EMOJIS",
-            vectors_config=models.VectorParams(
-                size=embedding_dim, 
-                distance=models.Distance.COSINE
-            ),
-        )
+#         # Create collection in Qdrant
+#         vector_DB_client.create_collection(
+#             collection_name="EMOJIS",
+#             vectors_config=models.VectorParams(
+#                 size=embedding_dim, 
+#                 distance=models.Distance.COSINE
+#             ),
+#         )
 
-        # Upload points to the collection
-        vector_DB_client.upload_points(
-            collection_name="EMOJIS",
-            points=[
-                models.PointStruct(
-                    id=idx, 
-                    vector=embedding_dict[emoji].tolist(),
-                    payload=emoji_dict[emoji]
-                )
-                for idx, emoji in enumerate(emoji_dict)
-            ],
-        )
+#         # Upload points to the collection
+#         vector_DB_client.upload_points(
+#             collection_name="EMOJIS",
+#             points=[
+#                 models.PointStruct(
+#                     id=idx, 
+#                     vector=embedding_dict[emoji].tolist(),
+#                     payload=emoji_dict[emoji]
+#                 )
+#                 for idx, emoji in enumerate(emoji_dict)
+#             ],
+#         )
         
-        st.session_state.vector_DB_client = vector_DB_client
+#         st.session_state.vector_DB_client = vector_DB_client
 
-def return_similar_emojis(query: str):
-    query_vector = st.session_state.sentence_encoder.encode(query).tolist()
+#@st.cache_resource
+def return_similar_emojis(
+    embedding_model: SentenceTransformer,
+    DB_index: QdrantClient,
+    query: str) -> List[str]:
+    """
+    Return similar emojis to the query using the sentence encoder and Qdrant. 
+    """
 
-    hits = st.session_state.vector_DB_client.search(
+    # Embed the query
+    query_vector = embedding_model.encode(query).tolist()
+
+    hits = DB_index.search(
         collection_name="EMOJIS",
         query_vector=query_vector,
         limit=400,
@@ -78,7 +139,19 @@ def return_similar_emojis(query: str):
     return search_emojis
 
 def main():
-    load_resources()
+
+    # Load the sentence encoder model
+    model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
+    sentence_encoder = load_encoder(model_name)
+
+    # Load the Qdrant client
+    embedding_dict_path = 'emoji_embeddings_dict.pkl'
+
+    with open(embedding_dict_path, 'rb') as file:
+        embedding_dict = pickle.load(file)
+
+    vector_DB_client = load_qdrant_client(embedding_dict)
+    
 
     st.title("Emojeez 🧿")
     st.text("AI-powered semantic search for emojis with multilingual support 🌐 ") 
@@ -92,6 +165,7 @@ def main():
 
 
         col1, col2 = st.columns([3.5, 1])
+
         with col1:
             query = st.text_input(
                 instr, #"Enter text query here...",
@@ -108,10 +182,13 @@ def main():
 
 
         if trigger_search:
-
-        #if trigger_search:# st.button("Search"):
             if query:
-                results = return_similar_emojis(query)
+                results = return_similar_emojis(
+                    sentence_encoder,
+                    vector_DB_client, 
+                    query
+                )
+
                 if results:
                     
                     # Display results as HTML
