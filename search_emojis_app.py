@@ -64,6 +64,10 @@ def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
     return vector_DB_client   
 
 
+# for the offline version this code was faster, but resulted in a resource 
+# limits error from online streamlit app 
+# it seems that each user has its own session, thus caching does not help
+# much here, and the resources are loaded for each user 
 # def load_resources():
 #     if ('vector_DB_client' not in st.session_state 
 #             or 'sentence_encoder' not in st.session_state):
@@ -152,14 +156,14 @@ def main():
 
     # Load the Qdrant client
     #if 'vector_DB_client' not in st.session_state:
-    embedding_dict_path = 'emoji_embeddings_dict.pkl'
+    embedding_dict_path = 'data/emoji_embeddings_dict.pkl'
 
     with open(embedding_dict_path, 'rb') as file:
         embedding_dict = pickle.load(file)
 
     vector_DB_clinet = load_qdrant_client(embedding_dict)    
 
-    st.title("Emojeez 🧿")
+    st.title("Emojeez 💎 ")
 
     app_description = """
         AI-powered semantic search for emojis with multilingual support 🌐 
@@ -215,7 +219,7 @@ def main():
                 else:
                     st.error("No results found.")
             else:
-                st.error("Please enter a query to search.")
+                st.error("Please enter a query of a few keywords to search!")
 
     # Footer
     footer = """
