@@ -129,7 +129,7 @@ def return_similar_emojis(
     hits = vector_DB_client.search(
         collection_name="EMOJIS",
         query_vector=query_vector,
-        limit=400,
+        limit=100,
     )
 
     search_emojis = []
@@ -149,6 +149,7 @@ def main():
     sentence_encoder = load_encoder(model_name)
 
 
+
     # Load the Qdrant client
     #if 'vector_DB_client' not in st.session_state:
     embedding_dict_path = 'emoji_embeddings_dict.pkl'
@@ -156,8 +157,7 @@ def main():
     with open(embedding_dict_path, 'rb') as file:
         embedding_dict = pickle.load(file)
 
-    vector_DB_clinet = load_qdrant_client(embedding_dict)
-    
+    vector_DB_clinet = load_qdrant_client(embedding_dict)    
 
     st.title("Emojeez 🧿")
 
@@ -166,6 +166,8 @@ def main():
     """
     st.text(app_description) 
     #query = st.text_input("Enter your search query", "")
+
+
 
 
     # Using columns to layout the input and button next to each other
@@ -214,6 +216,38 @@ def main():
                     st.error("No results found.")
             else:
                 st.error("Please enter a query to search.")
+
+    # Footer
+    footer = """
+    <style>
+    .footer {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: transparent;
+        color: gray;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .streamlit-container {
+        margin-bottom: 10px;  /* Adjust this value based on your footer height */
+    }
+    </style>
+    <div class="footer">
+    Developed with 💚 by <a href="https://github.com/badrex" target="_blank">Badr Alabsi</a>
+    </div>
+    """
+
+    # Use columns to visually separate the footer from the form content
+    footer_column = st.columns(1)  # Creates a full-width column
+    with footer_column[0]:
+        st.markdown(footer, unsafe_allow_html=True)
+ 
+
+
+
 
 if __name__ == "__main__":
     main()
