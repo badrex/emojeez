@@ -3,26 +3,26 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
-![a snapshot of the Streamlit app](./img.png)
-
-
-## Description
+## 📑 Description
 
 Emojeez 💎 is an AI-powered semantic search platform designed to help users discover and explore emojis based on text queries. This application leverages advanced natural language processing technologies to understand text queries and respond with relevant emojis. With its multilingual support, Emojeez 💎 retrieves emojis based on a simple sentence description or a few keywords in more 50 languages, enabling exploratory search and enhanced digital communication for users with diverse linguistic backgrounds. Experience Emojeez 💎 live [here](https://emojeez.streamlit.app/).
 
 
-## Core Features
+![a snapshot of the Streamlit app](./img.png)
 
- - **Advanced Semantic Emoji Search** ✨ Utilize our embedding-based search algorithm to find emojis that best match the contextual meaning of phrases and commonly used expressions. This functionality is powered by the integration of [Qdrant](https://qdrant.tech/)'s vector database and the powerful 🤗 [Transformers](https://huggingface.co/docs/transformers/en/index) library for sentence embedding models.
 
-- **Efficient Indexing of Over 5000 Emojis** 📑  Explore more than 5000 emojis based on the most recent Unicode standards. While each emoji is searchable by its standard name, you can also discover emojis by their common usage in today's text-based communication. For example, the text query *great ambition* returns 🚀, while *idea* returns 💡.
+## 🪄 Core Features
+
+ - **Advanced Semantic Emoji Search** 🔎 Utilize our embedding-based search algorithm to find emojis that best match the contextual meaning of phrases and commonly used expressions. This functionality is powered by the integration of [Qdrant](https://qdrant.tech/)'s vector database and the powerful 🤗 [Transformers](https://huggingface.co/docs/transformers/en/index) library for sentence embedding models.
+
+- **Efficient Indexing of Over 5000 Emojis** ✨  Explore more than 5000 emojis based on the most recent Unicode standards. While each emoji is searchable by its standard name, you can also discover emojis by their common usage in today's text-based communication. For example, the text query *great ambition* returns 🚀, while *idea* returns 💡.
 
 - **Comprehensive Multilingual Support** 🌐 Interact with the app using your native language! This feature is facilitated by a Transformer-based multilingual encoder that supports over 50 languages.
 
-- **Intuitive User Interface** 🖥️ Emojeez features a streamlined, user-friendly interface built with [Streamlit](https://streamlit.io/), ensuring seamless navigation and an efficient user experience.
+- **Intuitive User Interface** 🖥️ Emojeez 💎 features a streamlined, user-friendly interface built with [Streamlit](https://streamlit.io/), ensuring seamless navigation and an efficient user experience.
 
 
-## Getting Started
+## 🌱 Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -36,7 +36,7 @@ What you need to install the software:
 - Streamlit
 
 
-### Installation
+### Local Installation
 
 1. Clone the repository:
    ```bash
@@ -57,7 +57,7 @@ What you need to install the software:
     ```bash
     streamlit run search_emojis_app.py
 
-### Usage
+## ℹ️ How to Use Emojeez 💎?
 
 After launching the app, you will see a text input where you can type your query. Enter a phrase or a keyword or a keyphrase, and the app will display emojis based on semantic similarity with your text input. The app use is optimized when the search query is a phrase or a full sentence.
 
@@ -78,16 +78,18 @@ Here, I provide a few exampels of text queries and the output of the search algo
 | protect from evil eye | 🧿 👓 🥽 👁 🦹🏻 👀 🦹🏿 🛡️ 🦹🏼 🦹🏻‍♂ |
 | popular sport in the USA | ⚾ 🏐 🏀 🏈 🥍 🏓 🏑 🤾‍♂ 🤾‍♂️ 🎾 |
 | extraterrestrial | 👽 🛸 👾 👩🏼‍🚀 👩‍🚀 🧑‍🚀 👨‍🚀 👩🏽‍🚀 🧑🏻‍🚀 👩🏾‍🚀 |
+| heart gesture with hand | 🫶🏽 🫶🏿 🫶🏾 🫶🏻 🫶🏼 💁🏼‍♂ 🙌🏽 🤟 🫶 🙌 |
 
 </font>
 
 
 
 
-### Contributions
+## 🫶🏼 Contributions
 
 If you would like to contribute to Emojeez 💎, I warmly welcome your contribution 😊 Start by forking the repository and then propose your changes through a pull request. Contributions of all kinds are welcome, from new features and bug fixes to development of test cases. Your input will be highly valued ⭐
 
 
-### Get in Touch! 
+## 🤙🏼 Get in Touch! 
+
 Developed with 💚 by [Badr Alabsi](https://badrex.github.io/) 👨🏻‍💻
