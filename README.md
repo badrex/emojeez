@@ -64,7 +64,7 @@ After launching the app, you will see a text input where you can type your query
 Here, I provide a few exampels of text queries and the output of the search algorithm
 
 
-<font size="3">
+<font size="4">
 
 | Query | Top 10 Emojis |
 |----------|----------|
