@@ -3,9 +3,12 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
+![a snapshot of the Streamlit app](./img.png)
+
+
 ## Description
 
-Emojeez 💎 is an AI-powered semantic search platform designed to help users discover and explore emojis based on text queries. This application leverages advanced natural language processing technologies to process text queries and respond with relevant emojis. With multilingual support for over 50 languages, Emojeez 💎 retrieves emojis based on a simple sentence description or a few keywords, which enables exploratory search and enhanced digital communication for users with diverse linguistic backgrounds. Experience Emojeez 💎 live [here](https://emojeez.streamlit.app/).
+Emojeez 💎 is an AI-powered semantic search platform designed to help users discover and explore emojis based on text queries. This application leverages advanced natural language processing technologies to understand text queries and respond with relevant emojis. With its multilingual support, Emojeez 💎 retrieves emojis based on a simple sentence description or a few keywords in more 50 languages, enabling exploratory search and enhanced digital communication for users with diverse linguistic backgrounds. Experience Emojeez 💎 live [here](https://emojeez.streamlit.app/).
 
 
 ## Core Features
@@ -14,7 +17,7 @@ Emojeez 💎 is an AI-powered semantic search platform designed to help users di
 
 - **Efficient Indexing of Over 5000 Emojis** 📑  Explore more than 5000 emojis based on the most recent Unicode standards. While each emoji is searchable by its standard name, you can also discover emojis by their common usage in today's text-based communication. For example, the text query *great ambition* returns 🚀, while *idea* returns 💡.
 
-- **Comprehensive Multilingual Support** 🌐 Interact with the app using your native language, facilitated by a Transformer-based multilingual encoder that supports over 50 languages.
+- **Comprehensive Multilingual Support** 🌐 Interact with the app using your native language! This feature is facilitated by a Transformer-based multilingual encoder that supports over 50 languages.
 
 - **Intuitive User Interface** 🖥️ Emojeez features a streamlined, user-friendly interface built with [Streamlit](https://streamlit.io/), ensuring seamless navigation and an efficient user experience.
 
@@ -87,4 +90,4 @@ If you would like to contribute to Emojeez 💎, I warmly welcome your contribut
 
 
 ### Get in Touch! 
-Developed with 💚 by [Badr Alabsi](https://github.com/badrex) 👨🏻‍💻
+Developed with 💚 by [Badr Alabsi](https://badrex.github.io/) 👨🏻‍💻
