@@ -2,12 +2,22 @@ import streamlit as st
 import numpy as np
 import pickle
 from typing import Dict, List, Any
+import random
 from sentence_transformers import SentenceTransformer
 from qdrant_client import models, QdrantClient
 import emoji as em
 import warnings
 
 warnings.filterwarnings('ignore')
+
+# A function to load the emoji dictionary
+@st.cache_data(show_spinner=False)
+def load_dictionary(file_path: str) -> Dict[str, Dict[str, Any]]:
+    """Load the emoji dictionary from a pickle file."""
+
+    with open(file_path, 'rb') as file:
+        emoji_dict = pickle.load(file)
+    return emoji_dict
 
 # A function to load the sentence encoder model
 @st.cache_resource(show_spinner=False)
@@ -133,7 +143,7 @@ def return_similar_emojis(
     hits = vector_DB_client.search(
         collection_name="EMOJIS",
         query_vector=query_vector,
-        limit=100,
+        limit=50,
     )
 
     search_emojis = []
@@ -147,20 +157,83 @@ def return_similar_emojis(
 
 def main():
 
+    # Examples queries to show
+    example_queries = [
+        "Extraterrestrial form", 
+        "Exploration & discovery",
+        "Happy birthday",
+        "Love and peace",
+        "Beyond the stars",
+        "Great ambition",
+        "Career growth",
+        "Flightless bird",
+        "Tropical vibes",
+        "Gift of nature",
+        "In the ocean ",
+        "Spring awakening",
+        "Autumn vibes",
+        "In the garden",
+        "In the desert",
+        "Heart gesture",
+        "Love is in the air",
+        "In the mountains",
+        "Extinct species",
+        "Wonderful world",
+        "Cool vibes",
+        "Warm feelings",
+        "Academic excellence",
+        "Artistic expression",
+        "Modern architecture",
+        "Urban life",
+        "Rural life",
+        "Sign language",
+        "Multilingual support",
+        "Global communication",
+        "International cooperation",
+        "Worldwide connection",
+        "Digital transformation",
+        "AI-powered solutions",
+        "New beginnings",
+        "Innovation & creativity",
+        "Scientific discovery",
+        "Space exploration",
+        "Future technologies",
+        "Sustainable development",
+        "Climate change",
+        "Environmental protection",
+        "Healthy lifestyle",
+        "Mental health",
+        "Physical health",
+        "Healthy food",
+        "Healthy habits",
+        "Fitness & wellness",
+        "Mindfulness & meditation",
+        "Emotional intelligence",
+        "Personal growth",
+        "Professional development",
+        "Work-life balance",
+        "Financial freedom",
+        "Investment opportunities",
+        "Economic growth",
+        "Culture & heritage",
+        "Traditional crafts",
+        "Folk music",
+        "Cultural shock",
+
+    ]
+
+    random_query = random.sample(example_queries, 1)[0]
+
     # Load the sentence encoder model
     #if 'sentence_encoder' not in st.session_state:
     model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
     sentence_encoder = load_encoder(model_name)
 
-
+    # Load metadata dictionary
+    embedding_dict = load_dictionary('data/emoji_embeddings_dict.pkl')
 
     # Load the Qdrant client
     #if 'vector_DB_client' not in st.session_state:
-    embedding_dict_path = 'data/emoji_embeddings_dict.pkl'
-
-    with open(embedding_dict_path, 'rb') as file:
-        embedding_dict = pickle.load(file)
-
     vector_DB_clinet = load_qdrant_client(embedding_dict)    
 
     st.title("Emojeez 💎 ")
@@ -171,36 +244,48 @@ def main():
     st.text(app_description) 
     #query = st.text_input("Enter your search query", "")
 
-
-
-
     # Using columns to layout the input and button next to each other
-    with st.form(key="search_form", border=True, ):
+    with st.container(border=True):
 
         instr = "Enter your search query here"
 
+        if 'input_text' not in st.session_state:
+            st.session_state.input_text = ""
 
-        col1, col2 = st.columns([3.5, 1])
+        col1, col2, col3 = st.columns([3.5, 1, 1])
 
         with col1:
             query = st.text_input(
                 instr, #"Enter text query here...",
-                value="",
+                value=st.session_state.input_text, 
                 placeholder=instr,
                 label_visibility='collapsed',
                 #label_visibility='visible', 
-                #help="exploration discovery", 
+                help="exploration discovery", 
+                on_change=lambda: st.session_state.update({
+                        'enter_clicked': True
+                    }
+                )
+                #key="query_input"
 
             ) #Enter your search query
 
+
         with col2:
-            trigger_search = st.form_submit_button(
+            trigger_search = st.button(
                 label="Search ✨", 
                 use_container_width=True
             )
 
+        with col3:
+            trigger_magic = st.button(
+                label="Explore 🧭", 
+                use_container_width=True
+            )
 
-        if trigger_search:
+
+        # Trigger search if the search button is clicked or user clicked Enter
+        if trigger_search or (st.session_state.get('enter_clicked') and query):
             if query:
                 results = return_similar_emojis(
                     sentence_encoder,
@@ -221,6 +306,18 @@ def main():
             else:
                 st.error("Please enter a query of a few keywords to search!")
 
+        # Trigger magic if the search button is clicked
+        
+        # if trigger_magic:
+        #     st.session_state.input_text = random_query
+
+        #     #st.session_state
+
+        #     for i, (k, v) in enumerate(st.session_state.items()):
+        #         st.write(f"{i} Key: {k}, Value: {v}")
+
+        
+
     # Footer
     footer = """
     <style>
@@ -240,7 +337,7 @@ def main():
     }
     </style>
     <div class="footer">
-    Developed with 💚 by <a href="https://github.com/badrex" target="_blank">Badr Alabsi</a>
+    Developed with 💚 by <a href="https://badrex.github.io/" target="_blank">Badr Alabsi</a>
     </div>
     """
 
@@ -249,9 +346,6 @@ def main():
     with footer_column[0]:
         st.markdown(footer, unsafe_allow_html=True)
  
-
-
-
 
 if __name__ == "__main__":
     main()

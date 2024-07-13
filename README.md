@@ -61,7 +61,7 @@ What you need to install the software:
     ```bash
     streamlit run search_emojis_app.py
 
-## ℹ️ How to Use Emojeez 💎?
+## ℹ️ How to Use Emojeez 💎
 
 After launching the app, you will see a text input where you can type your query. Enter a phrase or a keyword or a keyphrase, and the app will display emojis based on semantic similarity with your text input. The app use is optimized when the search query is a phrase or a full sentence.
 
@@ -87,13 +87,13 @@ Here, I provide a few exampels of text queries and the output of the search algo
 </font>
 
 
-
-
 ## 🫶🏼 Contributions
 
 If you would like to contribute to Emojeez 💎, I warmly welcome your contribution 😊 Start by forking the repository and then propose your changes through a pull request. Contributions of all kinds are welcome, from new features and bug fixes to development of test cases. Your input will be highly valued ⭐
 
 
 ## 🤙🏼 Get in Touch! 
+
+Try out Emojeez 💎 in your language and let me know how you like it 😊
 
 Developed with 💚 by [Badr Alabsi](https://badrex.github.io/) 👨🏻‍💻
