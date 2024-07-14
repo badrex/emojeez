@@ -143,7 +143,7 @@ def return_similar_emojis(
     hits = vector_DB_client.search(
         collection_name="EMOJIS",
         query_vector=query_vector,
-        limit=50,
+        limit=100,
     )
 
     search_emojis = []
@@ -197,7 +197,6 @@ def main():
         "Innovation & creativity",
         "Scientific discovery",
         "Space exploration",
-        "Future technologies",
         "Sustainable development",
         "Climate change",
         "Environmental protection",
@@ -215,11 +214,9 @@ def main():
         "Financial freedom",
         "Investment opportunities",
         "Economic growth",
-        "Culture & heritage",
         "Traditional crafts",
         "Folk music",
         "Cultural shock",
-
     ]
 
     random_query = random.sample(example_queries, 1)[0]
@@ -278,13 +275,13 @@ def main():
             )
 
         with col3:
-            trigger_magic = st.button(
+            trigger_explore = st.button(
                 label="Explore 🧭", 
                 use_container_width=True
             )
 
 
-        # Trigger search if the search button is clicked or user clicked Enter
+        # Trigger search if the search button is clicked or user clicked Ebitnter
         if trigger_search or (st.session_state.get('enter_clicked') and query):
             if query:
                 results = return_similar_emojis(
@@ -306,10 +303,10 @@ def main():
             else:
                 st.error("Please enter a query of a few keywords to search!")
 
-        # Trigger magic if the search button is clicked
-        
-        # if trigger_magic:
-        #     st.session_state.input_text = random_query
+        # Trigger explore if the Explore button is clicked
+        if trigger_explore:
+            st.session_state.input_text = random_query
+            st.experimental_rerun()
 
         #     #st.session_state
 
