@@ -53,6 +53,6 @@ emoji_embeddings_dict: Dict[str, Dict[str, str]] = {
 }
 
 # save the embeddings to desk
-with open('emoji_embeddings_dict.pkl', 'wb') as file:
+with open('../data/emoji_embeddings_dict.pkl', 'wb') as file:
     pickle.dump(emoji_embeddings_dict, file)
 

@@ -129,7 +129,7 @@ def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
 
 
 #@st.cache_resource
-def return_similar_emojis(
+def retrieve_relevant_emojis(
         embedding_model: SentenceTransformer,
         vector_DB_client: QdrantClient,
         query: str) -> List[str]:
@@ -154,6 +154,32 @@ def return_similar_emojis(
             search_emojis.append(hit.payload['Emoji'])
 
     return search_emojis
+
+
+def render_results(
+        embedding_model: SentenceTransformer,
+        vector_DB_client: QdrantClient,
+        query: str) -> None:
+    """
+    Render the search results in the Streamlit app.
+    """
+
+    # Retrieve relevant emojis
+    results = retrieve_relevant_emojis(
+        embedding_model, 
+        vector_DB_client, 
+        query
+    )
+
+    if results:
+        # Display results as HTML
+        st.markdown(
+            '<h1>' + '\n'.join(results) + '</h1>', 
+            unsafe_allow_html=True
+        )
+
+    else:
+        st.error("No results found.")
 
 def main():
 
@@ -183,11 +209,9 @@ def main():
         "Warm feelings",
         "Academic excellence",
         "Artistic expression",
-        "Modern architecture",
         "Urban life",
         "Rural life",
         "Sign language",
-        "Multilingual support",
         "Global communication",
         "International cooperation",
         "Worldwide connection",
@@ -202,24 +226,21 @@ def main():
         "Environmental protection",
         "Healthy lifestyle",
         "Mental health",
-        "Physical health",
         "Healthy food",
         "Healthy habits",
         "Fitness & wellness",
         "Mindfulness & meditation",
         "Emotional intelligence",
         "Personal growth",
-        "Professional development",
-        "Work-life balance",
         "Financial freedom",
         "Investment opportunities",
         "Economic growth",
         "Traditional crafts",
         "Folk music",
         "Cultural shock",
+        "Illuminating thoughts",
     ]
 
-    random_query = random.sample(example_queries, 1)[0]
 
     # Load the sentence encoder model
     #if 'sentence_encoder' not in st.session_state:
@@ -243,18 +264,20 @@ def main():
 
     # Using columns to layout the input and button next to each other
     with st.container(border=True):
-
-        instr = "Enter your search query here"
+        random_query = random.sample(example_queries, 1)[0]
 
         if 'input_text' not in st.session_state:
-            st.session_state.input_text = ""
+            st.session_state.input_text = random_query #""
 
-        col1, col2, col3 = st.columns([3.5, 1, 1])
+        instr = f'Enter text query here.' # For example `illuminating thoughts´
+
+        #col1, col2, col3 = st.columns([3.5, 1, 1])
+        col1, col2 = st.columns([3.5, 1])
 
         with col1:
             query = st.text_input(
-                instr, #"Enter text query here...",
-                value=st.session_state.input_text, 
+                instr, 
+                value="", #st.session_state.input_text, 
                 placeholder=instr,
                 label_visibility='collapsed',
                 #label_visibility='visible', 
@@ -274,45 +297,39 @@ def main():
                 use_container_width=True
             )
 
-        with col3:
-            trigger_explore = st.button(
-                label="Explore 🧭", 
-                use_container_width=True
-            )
+        # with col3:
+        #     trigger_explore = st.button(
+        #         label="Explore 🧭", 
+        #         use_container_width=True
+        #     )
 
 
         # Trigger search if the search button is clicked or user clicked Ebitnter
         if trigger_search or (st.session_state.get('enter_clicked') and query):
             if query:
-                results = return_similar_emojis(
+
+                render_results(
                     sentence_encoder,
                     vector_DB_clinet,
                     query
                 )
+                #st.session_state['enter_clicked'] = False
 
-                if results:
-                    
-                    # Display results as HTML
-                    st.markdown(
-                        '<h1>' + '\n'.join(results) + '</h1>', 
-                        unsafe_allow_html=True
-                    )
-
-                else:
-                    st.error("No results found.")
             else:
                 st.error("Please enter a query of a few keywords to search!")
 
         # Trigger explore if the Explore button is clicked
-        if trigger_explore:
-            st.session_state.input_text = random_query
-            st.experimental_rerun()
+        # if trigger_explore:
+            
 
-        #     #st.session_state
-
-        #     for i, (k, v) in enumerate(st.session_state.items()):
-        #         st.write(f"{i} Key: {k}, Value: {v}")
-
+        #     st.session_state.input_text = random_query
+        #     st.session_state['explore_clicked'] = True
+            
+        #     render_results(
+        #         sentence_encoder,
+        #         vector_DB_clinet,
+        #         random_query
+        #     )
         
 
     # Footer
@@ -346,4 +363,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
