@@ -2,11 +2,12 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://emojeez.streamlit.app)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
 
 
 ## 📑 Description
 
-Emojeez 💎 is an AI-powered semantic search application designed to help users discover and explore emojis. It was developed using advanced natural language processing (NLP) technologies to understand users' text queries and respond with relevant emojis. Emojeez 💎 features a multilingual support for more 50 languages, enabling exploratory search for users with diverse linguistic backgrounds. 
+Emojeez 💎 is an AI-powered semantic search engine designed to help users discover and explore emojis. It was developed using advanced natural language processing (NLP) technologies to understand users' text queries and respond with relevant emojis. Emojeez 💎 features a multilingual support for more than 50 languages, enabling exploratory search for users with diverse linguistic backgrounds. 
 
 Try out Emojeez 💎 [here](https://emojeez.streamlit.app/).
 
