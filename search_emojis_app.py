@@ -19,6 +19,7 @@ def load_dictionary(file_path: str) -> Dict[str, Dict[str, Any]]:
         emoji_dict = pickle.load(file)
     return emoji_dict
 
+
 # A function to load the sentence encoder model
 @st.cache_resource(show_spinner=False)
 def load_encoder(model_name: str) -> SentenceTransformer:
@@ -27,6 +28,7 @@ def load_encoder(model_name: str) -> SentenceTransformer:
     sentence_encoder = SentenceTransformer(model_name)
     #st.session_state.sentence_encoder = sentence_encoder
     return sentence_encoder
+
 
 # A function to load the Qdrant vector DB client
 @st.cache_resource(show_spinner=False)
@@ -128,7 +130,6 @@ def load_qdrant_client(emoji_dict: Dict[str, Dict[str, Any]]) -> QdrantClient:
 #         st.session_state.vector_DB_client = vector_DB_client
 
 
-#@st.cache_resource
 def retrieve_relevant_emojis(
         embedding_model: SentenceTransformer,
         vector_DB_client: QdrantClient,

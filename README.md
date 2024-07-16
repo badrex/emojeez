@@ -7,7 +7,7 @@
 
 ## 📑 Description
 
-Emojeez 💎 is an AI-powered semantic search engine designed to help users discover and explore emojis. It was developed using advanced natural language processing (NLP) technologies to understand users' text queries and respond with relevant emojis. Emojeez 💎 features a multilingual support for more than 50 languages, enabling exploratory search for users with diverse linguistic backgrounds. 
+Emojeez 💎 is an AI-powered semantic search engine designed to help users discover and explore emojis. It was developed using advanced natural language processing (NLP) technologies to understand users' text queries and respond with relevant emojis. Emojeez 💎 features a multilingual support for more than 50 languages, enabling exploratory emoji search for users with diverse linguistic backgrounds. 
 
 Try out Emojeez 💎 [here](https://emojeez.streamlit.app/).
 

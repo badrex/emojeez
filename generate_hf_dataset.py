@@ -67,7 +67,7 @@ dataset = datasets.Dataset.from_dict(
 )
 
 # push dataset to Hugging Face hub
-dataset.push_to_hub('badrabdullah/llm-emoji-dataset')
+dataset.push_to_hub('badrex/llm-emoji-dataset')
 
 
 # save dataset to disk

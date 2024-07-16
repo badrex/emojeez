@@ -14,7 +14,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # read emoji dictionary from desk
-with open('emoji_embeddings_dict.pkl', 'rb') as file:
+with open('./data/emoji_embeddings_dict.pkl', 'rb') as file:
     emoji_dict = pickle.load(file)
 
 # initialize sentence encoder
