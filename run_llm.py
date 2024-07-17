@@ -45,7 +45,7 @@ pipeline = transformers.pipeline(
 
 system_prompt = f"""
 You are a helpful, positive, and polite assistant who enjoys describing and categorizing emojis.
-You task to provide a description of a given emoji. The generated output will be used for indexing and discovering emojies using semantic search.
+Your task is to provide a description of a given emoji. The generated output will be used for indexing and discovering emojies using semantic search.
 You have to generate a one-sentence summary in simple language, as well as a list of 5-7 semantic tags.
 The output should be in a structured YAML format.
 

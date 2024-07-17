@@ -352,7 +352,8 @@ def main():
     }
     </style>
     <div class="footer">
-    Developed with 💚 by <a href="https://badrex.github.io/" target="_blank">Badr Alabsi</a>
+    Developed with 💚 by <a href="https://badrex.github.io/" target="_blank">Badr Alabsi</a> <br />
+    <a href="https://medium.com/p/f85a36a86f21" target="_blank">How it works?</a> 🚀
     </div>
     """
 
