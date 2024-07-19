@@ -34,7 +34,7 @@ Try out Emojeez 💎 [here](https://emojeez.streamlit.app/).
 
 - **Comprehensive Multilingual Support** 🌐 Discover emojis using your native language! This feature is facilitated by a Transformer-based multilingual encoder that supports over 50 languages.
 
-- **Intuitive User Interface** Interact with 🖥️ Emojeez 💎 via an intuitive user-friendly interface built with [Streamlit](https://streamlit.io/).
+- **Intuitive User Interface** 🖥️ Interact with Emojeez 💎 via an intuitive user-friendly interface built with [Streamlit](https://streamlit.io/).
 
 
 ## 🌱 Getting Started
