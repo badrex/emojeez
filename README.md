@@ -1,4 +1,4 @@
-<p align="center">
+<center>
 <h1>Emojeez 💎</h1>
 
 <img src="./header_img.png" alt="An app for emojis" width="600"/>
@@ -11,7 +11,9 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
 <a href="https://twitter.com/badr_nlp" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow me"></a>
 
-</p>
+<a href="https://medium.com/@badr.alabsi/semantic-search-for-emojis-in-50-languages-using-ai-f85a36a86f21">How does it work? </a>
+
+</center>
 
 
 ## 📑 Description
