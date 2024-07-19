@@ -1,14 +1,18 @@
 <center> 
 <h1>Emojeez 💎</h1>
-<h3>AI-powered semantic search engine for emojis in 50+ languages </h3>
+
 
 <img src="./header_img.png" alt="An app for emojis" width="600"/>
+
+<h4>AI-powered semantic search engine for emojis in 50+ languages </h4>
 
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://emojeez.streamlit.app)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
 <a href="https://twitter.com/badr_nlp" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow me"></a>
+
+</center> 
 
 ## 📑 Description
 
