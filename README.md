@@ -1,8 +1,8 @@
 <div align="center">
 <h1>Emojeez 💎</h1>
-<h4>AI-powered semantic search engine for emojis in 50+ languages </h4>
+AI-powered semantic search engine for emojis in 50+ languages
 
-<img src="./header_img.png" alt="An app for emojis" width="600"/>
+<img src="./header_img.png" alt="An app for emojis" width="500"/>
 
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
