@@ -6,7 +6,7 @@ AI-powered semantic search engine for emojis in 50+ languages
 
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Language](https://img.shields.io/badge/Language-Multilingual-red)](LANGUAGES)
+[![Language](https://img.shields.io/badge/Language-Multilingual-red)](LANGUAGES.md)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://emojeez.streamlit.app)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
 <a href="https://twitter.com/badr_nlp" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a> 
