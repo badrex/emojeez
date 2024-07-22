@@ -121,7 +121,7 @@ The output must be in a YAML format. You must follow these instructions to win.
 
 """
 
-user_message = "Describe this emoji according to your instructions"
+user_message = "Describe this emoji according to your instructions."
 
 def add_prompt_column(example):
 

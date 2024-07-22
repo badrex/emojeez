@@ -1,4 +1,4 @@
-<center>
+<div align="center">
 <h1>Emojeez 💎</h1>
 <h4>AI-powered semantic search engine for emojis in 50+ languages </h4>
 
@@ -6,13 +6,15 @@
 
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Language](https://img.shields.io/badge/Language-Multilingual-red)](LANGUAGES)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://emojeez.streamlit.app)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
-<a href="https://twitter.com/badr_nlp" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow me"></a> 
+<a href="https://twitter.com/badr_nlp" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a> 
 
-[ <a href="https://medium.com/@badr.alabsi/semantic-search-for-emojis-in-50-languages-using-ai-f85a36a86f21">How does it work? </a> ]
 
-</center>
+[ <a href="https://medium.com/@badr.alabsi/semantic-search-for-emojis-in-50-languages-using-ai-f85a36a86f21">How does it work?  </a>  🚀 ]
+
+</div>
 
 
 ## 📑 Description
@@ -106,6 +108,6 @@ If you would like to contribute to Emojeez 💎, I warmly welcome your contribut
 
 Try out Emojeez 💎 in your language and let me know how you like it 😊
 
-Also, if you like this project, don't forget to give us a star ⭐
+Also, don't forget to give us a ⭐ on GitHub 
 
 Developed with 💚 by [Badr Alabsi](https://badrex.github.io/) 👨🏻‍💻
