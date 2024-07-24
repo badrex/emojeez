@@ -245,12 +245,12 @@ def main():
 
     # Load the sentence encoder model
     #if 'sentence_encoder' not in st.session_state:
-    #model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
-    model_name = 'paraphrase-multilingual-mpnet-base-v2'
+    model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
+    #model_name = 'paraphrase-multilingual-mpnet-base-v2'
     sentence_encoder = load_encoder(model_name)
 
     # Load metadata dictionary
-    embedding_dict = load_dictionary('data/emoji_embeddings_768d_dict.pkl')
+    embedding_dict = load_dictionary('data/emoji_embeddings_dict.pkl')
 
     # Load the Qdrant client
     #if 'vector_DB_client' not in st.session_state:
