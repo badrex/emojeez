@@ -9,12 +9,13 @@ from sentence_transformers import SentenceTransformer
 
 
 # read emoji dictionary from desk
-with open('emoji_llm.pkl', 'rb') as file:
+with open('data/emoji_llm.pkl', 'rb') as file:
     emoji_dict: Dict[str, Dict[str, str]] = pickle.load(file)
 
 # initialize sentence encoder
-embedging_model = 'paraphrase-multilingual-MiniLM-L12-v2'
-sentence_encoder = SentenceTransformer(embedging_model)
+#embedging_model = 'paraphrase-multilingual-MiniLM-L12-v2'
+embedding_model = 'paraphrase-multilingual-mpnet-base-v2'
+sentence_encoder = SentenceTransformer(embedding_model)
 
 # make a full sentence description for each emoji
 for emoji in tqdm(emoji_dict):
@@ -53,6 +54,6 @@ emoji_embeddings_dict: Dict[str, Dict[str, str]] = {
 }
 
 # save the embeddings to desk
-with open('../data/emoji_embeddings_dict.pkl', 'wb') as file:
+with open('data/emoji_embeddings_768d_dict.pkl', 'wb') as file:
     pickle.dump(emoji_embeddings_dict, file)
 

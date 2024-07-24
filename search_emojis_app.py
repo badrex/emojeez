@@ -245,11 +245,12 @@ def main():
 
     # Load the sentence encoder model
     #if 'sentence_encoder' not in st.session_state:
-    model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
+    #model_name = 'paraphrase-multilingual-MiniLM-L12-v2'
+    model_name = 'paraphrase-multilingual-mpnet-base-v2'
     sentence_encoder = load_encoder(model_name)
 
     # Load metadata dictionary
-    embedding_dict = load_dictionary('data/emoji_embeddings_dict.pkl')
+    embedding_dict = load_dictionary('data/emoji_embeddings_768d_dict.pkl')
 
     # Load the Qdrant client
     #if 'vector_DB_client' not in st.session_state:
@@ -270,7 +271,7 @@ def main():
         if 'input_text' not in st.session_state:
             st.session_state.input_text = random_query #""
 
-        instr = f'Enter text query here.' # For example `illuminating thoughts´
+        instr = f'Enter your text query here ...' # For example `illuminating thoughts´
 
         #col1, col2, col3 = st.columns([3.5, 1, 1])
         col1, col2 = st.columns([3.5, 1])
