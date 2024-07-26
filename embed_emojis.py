@@ -13,8 +13,8 @@ with open('data/emoji_llm.pkl', 'rb') as file:
     emoji_dict: Dict[str, Dict[str, str]] = pickle.load(file)
 
 # initialize sentence encoder
-#embedging_model = 'paraphrase-multilingual-MiniLM-L12-v2'
-embedding_model = 'paraphrase-multilingual-mpnet-base-v2'
+embedging_model = 'paraphrase-multilingual-MiniLM-L12-v2'
+#embedding_model = 'paraphrase-multilingual-mpnet-base-v2'
 sentence_encoder = SentenceTransformer(embedding_model)
 
 # make a full sentence description for each emoji
