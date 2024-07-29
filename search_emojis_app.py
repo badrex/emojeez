@@ -259,7 +259,7 @@ def main():
     st.title("Emojeez 💎 ")
 
     app_description = """
-        AI-powered semantic search for emojis with multilingual support 🌐 
+        AI-powered semantic emoji search in 50+ languages 🌐 
     """
     st.text(app_description) 
     #query = st.text_input("Enter your search query", "")
