@@ -6,6 +6,7 @@ AI-powered semantic search engine for emojis in 50+ languages
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-311/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97-datasets-yellow)](https://huggingface.co/datasets/badrex/llm-emoji-dataset)
 [![Language](https://img.shields.io/badge/Language-Multilingual-red)](LANGUAGES)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://emojeez.streamlit.app)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
