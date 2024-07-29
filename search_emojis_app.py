@@ -258,10 +258,20 @@ def main():
 
     st.title("Emojeez 💎 ")
 
-    app_description = """
-        AI-powered semantic emoji search in 50+ languages 🌐 
+    # ({languages_link}) 
+    languages_link = "https://github.com/badrex/emojeez/blob/main/LANGUAGES"
+
+    app_description = f"""
+        Search and explore emojis using text queries in 50+ languages 🌐 
+    """
+    app_example = """
+        For example, type “ goal oriented ”  or  “ illuminating thought ” 
     """
     st.text(app_description) 
+
+
+     
+
     #query = st.text_input("Enter your search query", "")
 
     # Using columns to layout the input and button next to each other
@@ -272,6 +282,8 @@ def main():
             st.session_state.input_text = random_query #""
 
         instr = f'Enter your text query here ...' # For example `illuminating thoughts´
+
+        st.caption(app_example)
 
         #col1, col2, col3 = st.columns([3.5, 1, 1])
         col1, col2 = st.columns([3.5, 1])
@@ -298,6 +310,7 @@ def main():
                 label="Search ✨", 
                 use_container_width=True
             )
+
 
         # with col3:
         #     trigger_explore = st.button(
@@ -354,7 +367,9 @@ def main():
     </style>
     <div class="footer">
     Developed with 💚 by <a href="https://badrex.github.io/" target="_blank">Badr Alabsi</a> <br />
-    <a href="https://medium.com/p/f85a36a86f21" target="_blank">How it works?</a> 🚀
+    🛠️ &ensp; <a href="https://medium.com/p/f85a36a86f21" target="_blank">How does it work?</a>  &ensp; | &ensp; 
+    🌐 &ensp; <a href="https://github.com/badrex/emojeez/blob/main/LANGUAGES" target="_blank">Supported languages</a>  &ensp; | &ensp; 
+    🚀 &ensp; <a href="https://github.com/badrex/emojeez" target="_blank">Check out code!</a> 
     </div>
     """
 
