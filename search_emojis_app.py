@@ -265,7 +265,7 @@ def main():
         Search and explore emojis using text queries in 50+ languages 🌐 
     """
     app_example = """
-        ⌨️  For example, type “ goal oriented ”  or  “ illuminating thought ” below
+        ⌨️ For example, type “ goal oriented ”  or  “ illuminating thought ” below
     """
     st.text(app_description) 
 
