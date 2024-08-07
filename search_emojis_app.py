@@ -160,22 +160,28 @@ def retrieve_relevant_emojis(
 def render_results(
         embedding_model: SentenceTransformer,
         vector_DB_client: QdrantClient,
-        query: str) -> None:
+        query: str, 
+        emojis_to_render: List[str] = None,) -> None:
     """
     Render the search results in the Streamlit app.
     """
 
     # Retrieve relevant emojis
-    results = retrieve_relevant_emojis(
-        embedding_model, 
-        vector_DB_client, 
-        query
-    )
+    if emojis_to_render is None:
+        emojis_to_render = retrieve_relevant_emojis(
+            embedding_model, 
+            vector_DB_client, 
+            query
+        )
 
-    if results:
-        # Display results as HTML
+    #with st.empty():
+    # Display results as HTML
+    #placeholder = st.empty()
+
+    if emojis_to_render:
+        
         st.markdown(
-            '<h1>' + '\n'.join(results) + '</h1>', 
+            '<h1>' + '\n'.join(emojis_to_render) + '</h1>', 
             unsafe_allow_html=True
         )
 
@@ -252,6 +258,9 @@ def main():
     # Load metadata dictionary
     embedding_dict = load_dictionary('data/emoji_embeddings_dict.pkl')
 
+    # git a list of emojis
+    emojis = list(embedding_dict.keys())
+
     # Load the Qdrant client
     #if 'vector_DB_client' not in st.session_state:
     vector_DB_clinet = load_qdrant_client(embedding_dict)    
@@ -285,8 +294,8 @@ def main():
 
         st.caption(app_example)
 
-        #col1, col2, col3 = st.columns([3.5, 1, 1])
-        col1, col2 = st.columns([3.5, 1])
+        col1, col2, col3 = st.columns([3.5, 1.3, 1.3])
+        #col1, col2 = st.columns([3.5, 1])
 
         with col1:
             query = st.text_input(
@@ -312,39 +321,43 @@ def main():
             )
 
 
-        # with col3:
-        #     trigger_explore = st.button(
-        #         label="Explore 🧭", 
-        #         use_container_width=True
-        #     )
+        with col3:
+            trigger_explore = st.button(
+                label="Randomize 🎲", 
+                use_container_width=True
+            )
 
+        # create an empty container to show the resukts
+        #placeholder = st.empty()
+        
+        with st.empty():
 
-        # Trigger search if the search button is clicked or user clicked Ebitnter
-        if trigger_search or (st.session_state.get('enter_clicked') and query):
-            if query:
+            # Trigger search if the search button is clicked or user clicked Ebitnter
+            if trigger_search or (st.session_state.get('enter_clicked') and query):
+                if query:
 
+                    render_results(
+                        sentence_encoder,
+                        vector_DB_clinet,
+                        query
+                    )
+                    #st.session_state['enter_clicked'] = False
+
+                else:
+                    st.error("Please enter a query of a few keywords to search!")
+
+            # Trigger explore if the Explore button is clicked
+            if trigger_explore:
+                
+                # get a list of 100 random emojis
+                random_emojis = random.sample(emojis, 100)
+                
                 render_results(
                     sentence_encoder,
                     vector_DB_clinet,
-                    query
+                    "", 
+                    emojis_to_render=random_emojis
                 )
-                #st.session_state['enter_clicked'] = False
-
-            else:
-                st.error("Please enter a query of a few keywords to search!")
-
-        # Trigger explore if the Explore button is clicked
-        # if trigger_explore:
-            
-
-        #     st.session_state.input_text = random_query
-        #     st.session_state['explore_clicked'] = True
-            
-        #     render_results(
-        #         sentence_encoder,
-        #         vector_DB_clinet,
-        #         random_query
-        #     )
         
 
     # Footer
