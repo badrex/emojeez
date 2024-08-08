@@ -271,7 +271,7 @@ def main():
     languages_link = "https://github.com/badrex/emojeez/blob/main/LANGUAGES"
 
     app_description = f"""
-        Multilingual semantic search for emojis in 50+ languages 🌐 
+        AI-powered, multilingual semantic search for emojis in 50+ languages 🌐 
     """
     app_example = """
         ⌨️ For example, type “ hit the target ”  or  “ illuminating ” below
