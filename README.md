@@ -10,11 +10,17 @@ AI-powered semantic search engine for emojis in 50+ languages
 [![Language](https://img.shields.io/badge/Language-Multilingual-red)](LANGUAGES)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://emojeez.streamlit.app)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/badrex/emojeez/blob/main/notebooks/emoji_search_notebook.ipynb)
-<a href="https://twitter.com/badr_nlp" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a> 
+
+Share Emojeez 💎 and star us on GitHub if you like it ⭐
+
+[![Share](https://img.shields.io/badge/share-000000?logo=x&logoColor=white)](https://x.com/intent/tweet?text=Check%20out%20this%20project%20on%20GitHub:%20https://github.com/badrex/emojeez%20%23OpenIDConnect%20%23Security%20%23Authentication)
+[![Share](https://img.shields.io/badge/share-1877F2?logo=facebook&logoColor=white)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/badrex/emojeez)
+[![Share](https://img.shields.io/badge/share-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/badrex/emojeez)
+[![Share](https://img.shields.io/badge/share-FF4500?logo=reddit&logoColor=white)](https://www.reddit.com/submit?title=Check%20out%20this%20project%20on%20GitHub:%20https://github.com/badrex/emojeez)
+[![Share](https://img.shields.io/badge/share-0088CC?logo=telegram&logoColor=white)](https://t.me/share/url?url=https://github.com/badrex/emojeez&text=Check%20out%20this%20project%20on%20GitHub)
 
 
 [ <a href="https://medium.com/@badr.alabsi/semantic-search-for-emojis-in-50-languages-using-ai-f85a36a86f21">How does it work?  </a>  🚀 ]
-
 </div>
 
 
@@ -108,7 +114,5 @@ If you would like to contribute to Emojeez 💎, I warmly welcome your contribut
 ## 🤙🏼 Get in Touch! 
 
 Try out Emojeez 💎 in your language and let me know how you like it 😊
-
-Also, don't forget to give us a ⭐ on GitHub 
 
 Developed with 💚 by [Badr Alabsi](https://badrex.github.io/) 👨🏻‍💻
