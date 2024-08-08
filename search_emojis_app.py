@@ -294,8 +294,8 @@ def main():
 
         st.caption(app_example)
 
-        col1, col2, col3 = st.columns([3.5, 1.3, 1.3])
-        #col1, col2 = st.columns([3.5, 1])
+        #col1, col2, col3 = st.columns([3.5, 1.3, 1.3])
+        col1, col2 = st.columns([3.5, 1])
 
         with col1:
             query = st.text_input(
@@ -321,43 +321,43 @@ def main():
             )
 
 
-        with col3:
-            trigger_explore = st.button(
-                label="Randomize 🎲", 
-                use_container_width=True
-            )
+        # with col3:
+        #     trigger_explore = st.button(
+        #         label="Randomize 🎲", 
+        #         use_container_width=True
+        #     )
 
         # create an empty container to show the resukts
         #placeholder = st.empty()
         
-        with st.empty():
+        #with st.empty():
 
-            # Trigger search if the search button is clicked or user clicked Ebitnter
-            if trigger_search or (st.session_state.get('enter_clicked') and query):
-                if query:
+        # Trigger search if the search button is clicked or user clicked Ebitnter
+        if trigger_search or (st.session_state.get('enter_clicked') and query):
+            if query:
 
-                    render_results(
-                        sentence_encoder,
-                        vector_DB_clinet,
-                        query
-                    )
-                    #st.session_state['enter_clicked'] = False
-
-                else:
-                    st.error("Please enter a query of a few keywords to search!")
-
-            # Trigger explore if the Explore button is clicked
-            if trigger_explore:
-                
-                # get a list of 50 random emojis
-                random_emojis = random.sample(emojis, 50)
-                
                 render_results(
                     sentence_encoder,
                     vector_DB_clinet,
-                    "", 
-                    emojis_to_render=random_emojis
+                    query
                 )
+                #st.session_state['enter_clicked'] = False
+
+            else:
+                st.error("Please enter a query of a few keywords to search!")
+
+            # # Trigger explore if the Explore button is clicked
+            # if trigger_explore:
+                
+            #     # get a list of 50 random emojis
+            #     random_emojis = random.sample(emojis, 50)
+                
+            #     render_results(
+            #         sentence_encoder,
+            #         vector_DB_clinet,
+            #         "", 
+            #         emojis_to_render=random_emojis
+            #     )
         
 
     # Footer
