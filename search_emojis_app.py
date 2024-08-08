@@ -144,7 +144,7 @@ def retrieve_relevant_emojis(
     hits = vector_DB_client.search(
         collection_name="EMOJIS",
         query_vector=query_vector,
-        limit=100,
+        limit=50,
     )
 
     search_emojis = []
@@ -181,7 +181,7 @@ def render_results(
     if emojis_to_render:
         
         st.markdown(
-            '<h1>' + '\n'.join(emojis_to_render) + '</h1>', 
+            '<h1 style="font-size: 60px">' + '\t'.join(emojis_to_render) + '</h1>', 
             unsafe_allow_html=True
         )
 
@@ -349,8 +349,8 @@ def main():
             # Trigger explore if the Explore button is clicked
             if trigger_explore:
                 
-                # get a list of 100 random emojis
-                random_emojis = random.sample(emojis, 100)
+                # get a list of 50 random emojis
+                random_emojis = random.sample(emojis, 50)
                 
                 render_results(
                     sentence_encoder,
