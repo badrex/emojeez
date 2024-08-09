@@ -316,7 +316,7 @@ def main():
 
         with col2:
             trigger_search = st.button(
-                label="Search ✨", 
+                label="✨ Find emojis!", 
                 use_container_width=True
             )
 
