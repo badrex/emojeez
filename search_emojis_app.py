@@ -380,9 +380,9 @@ def main():
     </style>
     <div class="footer">
     Developed with 💚 by <a href="https://badrex.github.io/" target="_blank">Badr Alabsi</a> <br />
-    🛠️ &ensp; <a href="https://medium.com/p/f85a36a86f21" target="_blank">How does it work?</a>  &ensp; | &ensp; 
-    🌐 &ensp; <a href="https://github.com/badrex/emojeez/blob/main/LANGUAGES" target="_blank">Supported languages</a>  &ensp; | &ensp; 
-    🚀 &ensp; <a href="https://github.com/badrex/emojeez" target="_blank">Check out code!</a> 
+    🛠️ &ensp; <a href="https://medium.com/p/f85a36a86f21" target="_blank">[Blog Post]</a>  &ensp; | &ensp; 
+    🌐 &ensp; <a href="https://github.com/badrex/emojeez/blob/main/LANGUAGES" target="_blank"> [Languages]</a>  &ensp; | &ensp; 
+    🚀 &ensp; <a href="https://github.com/badrex/emojeez" target="_blank">[Code]</a> 
     </div>
     """
 

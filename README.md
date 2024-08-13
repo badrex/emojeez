@@ -20,7 +20,7 @@ AI-powered semantic search engine for emojis in 50+ languages
 
 Share Emojeez 💎 and star us on GitHub if you like it ⭐
 
-[ <a href="https://medium.com/@badr.alabsi/semantic-search-for-emojis-in-50-languages-using-ai-f85a36a86f21">How does it work?  </a>  🚀 ]
+[ <a href="https://medium.com/@badr.alabsi/semantic-search-for-emojis-in-50-languages-using-ai-f85a36a86f21"> How does it work? </a>  🚀 ]
 </div>
 
 
