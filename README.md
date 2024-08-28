@@ -81,6 +81,12 @@ What you need to install the software:
     ```bash
     streamlit run search_emojis_app.py
 
+5. (Optional) Try out the CLI tool 
+    
+    ```bash
+    python3 search_emojis_cli.py 
+    
+
 ## ℹ️ How to Use Emojeez 💎
 
 After launching the app, you will see a text input where you can type your query. Enter a phrase or a keyword or a keyphrase, and the app will display emojis based on semantic similarity with your text input. The app use is optimized when the search query is a phrase or a full sentence.
